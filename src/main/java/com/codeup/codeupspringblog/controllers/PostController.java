@@ -1,17 +1,30 @@
 package com.codeup.codeupspringblog.controllers;
 
+
+import com.codeup.codeupspringblog.models.Post;
+
+import com.codeup.codeupspringblog.repositories.PostRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @Controller
 @RequestMapping(path = "/posts")
 public class PostController {
 
-    // GET /posts
+    private final PostRepository postDao;
+
+
     @GetMapping
-    public String getPosts() {
+    public String getPosts(Model model) {
+        List<Post> posts = postDao.findAll();
+
+        model.addAttribute("posts", posts);
+
         return "posts/show";
     }
 
@@ -31,8 +44,14 @@ public class PostController {
     // POST /posts/create
     @PostMapping("/create")
     @ResponseBody
-    public String createPost() {
+    public String createPost(@RequestParam(name = "title") String title, @RequestParam(name = "description") String description) {
         // Logic for creating a new post
+        Post post = new Post();
+        post.setTitle(title);
+        post.setDescription(description);
+
+        postDao.save(post);
+
         return "Successfully created a new post";
     }
 }

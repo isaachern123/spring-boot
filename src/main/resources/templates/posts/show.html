@@ -7,6 +7,16 @@
     <title>Title</title>
 </head>
 <body>
-<h1>SHOW TEST</h1>
+<h1>POSTS</h1>
+<h1 th:if="${posts.size() > 0}"><span th:text="${posts}">(insert posts here)</span></h1>
+
+<div class="alert alert-danger" th:if="${errMsg}">
+    Something bad happened!
+</div>
+
+<ul th:each="post : ${posts}">
+    <li th:text="${post.title}" >(insert post name here)</li>
+</ul>
+
 </body>
 </html>
