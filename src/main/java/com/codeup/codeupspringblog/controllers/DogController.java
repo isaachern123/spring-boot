@@ -29,15 +29,6 @@ public class DogController {
 
         model.addAttribute("dogs", dogs);
 
-//        List<Dog> genderDogs = dogDao.findByGender("Female");
-//        System.out.println(genderDogs);
-
-//        List<Dog> someDogs = dogDao.findLikeName("a");
-//        System.out.println(someDogs);
-
-//        System.out.println("Finding spot by his name");
-//        Dog spot = dogDao.findByName("SpotSpot");
-//        System.out.println(spot);
 
         return "dogs";
     }
@@ -62,6 +53,7 @@ public class DogController {
     public String createDog() {
         Dog dog = new Dog();
         dog.setName("rupert");
+        dog.setGender("Male");
 
         dogDao.save(dog);
         return "dog created";
