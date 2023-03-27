@@ -23,7 +23,7 @@ public class PostController {
     // GET /posts/create
     @GetMapping("/posts/create")
     public String createPostForm() {
-        return "This is the form for creating a new post";
+        return "posts/create";
     }
 
     // POST /posts/create
