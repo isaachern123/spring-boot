@@ -3,6 +3,8 @@ package com.codeup.codeupspringblog.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,18 +13,20 @@ import lombok.*;
 @ToString
 
 @Entity
-@Table(name = "posts")
-public class Post {
+@Table(name = "users")
+public class User {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(length = 1024, nullable = false, unique = true)
-    private String title;
+    private String username;
 
     @Column(length = 1024, nullable = false)
-    private String description;
+    private String email;
 
-    @ManyToOne
-    @JoinColumn (name = "user_id")
-    private User user;
+    @Column(length = 1024, nullable = false)
+    private String password;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Post> posts;
 }
