@@ -43,7 +43,6 @@ public class PostController {
 
     // POST /posts/create
     @PostMapping("/create")
-    @ResponseBody
     public String createPost(@RequestParam String title, @RequestParam String description) {
         // Logic for creating a new post
         Post post = new Post();
@@ -52,7 +51,7 @@ public class PostController {
 
         postDao.save(post);
 
-        return "Successfully created a new post";
+        return "redirect:/posts";
     }
 }
 
