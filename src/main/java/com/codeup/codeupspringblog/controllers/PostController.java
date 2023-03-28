@@ -44,7 +44,7 @@ public class PostController {
     // POST /posts/create
     @PostMapping("/create")
     @ResponseBody
-    public String createPost(@RequestParam(name = "title") String title, @RequestParam(name = "description") String description) {
+    public String createPost(@RequestParam String title, @RequestParam String description) {
         // Logic for creating a new post
         Post post = new Post();
         post.setTitle(title);
