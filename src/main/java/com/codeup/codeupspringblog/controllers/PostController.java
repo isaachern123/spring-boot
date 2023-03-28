@@ -3,8 +3,11 @@ package com.codeup.codeupspringblog.controllers;
 
 import com.codeup.codeupspringblog.models.Post;
 
+import com.codeup.codeupspringblog.models.User;
 import com.codeup.codeupspringblog.repositories.PostRepository;
+import com.codeup.codeupspringblog.repositories.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +19,11 @@ import java.util.List;
 @RequestMapping(path = "/posts")
 public class PostController {
 
+    @Autowired
     private final PostRepository postDao;
+
+    @Autowired
+    private final UserRepository userDao;
 
 
     @GetMapping
@@ -48,6 +55,10 @@ public class PostController {
         Post post = new Post();
         post.setTitle(title);
         post.setDescription(description);
+
+        User user = userDao.findById(2L).get();
+        post.setUser(user);
+
 
         postDao.save(post);
 
