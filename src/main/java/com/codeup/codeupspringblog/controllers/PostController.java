@@ -6,12 +6,13 @@ import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
 import com.codeup.codeupspringblog.repositories.PostRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
-import jakarta.persistence.Id;
+
+import com.codeup.codeupspringblog.services.EmailService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,9 @@ public class PostController {
 
     @Autowired
     private final UserRepository userDao;
+
+    @Autowired
+    private final EmailService emailService;
 
 
     @GetMapping
@@ -64,6 +68,8 @@ public class PostController {
         post.setUser(user);
 
         postDao.save(post);
+
+        emailService.prepareAndSend(user, "Post Creation", post.getTitle());
 
         return "redirect:/posts";
     }
