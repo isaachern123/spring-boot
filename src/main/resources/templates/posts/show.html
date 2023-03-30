@@ -6,16 +6,17 @@
 </head>
 <body>
 <nav th:replace="/partials:: navbar"></nav>
-<h1>POSTS</h1>
+<h1 class="text-center">POSTS</h1>
 <div class="alert alert-danger" th:if="${errMsg}">
     Something bad happened!
 </div>
-
-<ul th:each="post : ${posts}">
-    <card>
-        <li th:text="${post.title}">(insert post name here)</li>
-        <a th:href="|/posts/${post.id}/info|">more</a>
-    </card>
-</ul>
+<div class="d-flex flex-wrap justify-content-evenly mx-auto">
+    <div th:each="post : ${posts}" class="card text-center mb-3" style="width: 10rem;">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${post.title}"></h5>
+            <a th:href="|/posts/${post.id}/info|" class="btn btn-dark">info</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>

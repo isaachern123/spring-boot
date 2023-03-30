@@ -6,11 +6,16 @@
 </head>
 <body>
 <nav th:replace="/partials:: navbar"></nav>
-<div th:object="${post}">
-    <h2 th:text="${post.title}"></h2>
-    <a th:text="${post.description}"></a>
-    <a th:href="|/posts/${post.id}/edit|">edit</a>
+<div class="d-flex justify-content-center mt-3">
+    <div th:object="${post}" class="card text-center mb-3" style="width: 14rem;">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${post.title}"></h5>
+            <a th:text="${post.description}"></a>
+            <br>
+            <a th:href="|/posts/${post.id}/info|" class="btn btn-primary">edit</a>
+            <a th:href="|/posts/${post.id}/delete|" class="btn btn-primary">delete</a>
+        </div>
+    </div>
 </div>
-
 </body>
 </html>
