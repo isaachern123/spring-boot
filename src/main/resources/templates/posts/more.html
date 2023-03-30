@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="/partials:: head">
+    <meta charset="UTF-8">
+    <title>More Info</title>
+</head>
+<body>
+<nav th:replace="/partials:: navbar"></nav>
+<div th:object="${post}">
+    <h2 th:text="${post.title}"></h2>
+    <a th:text="${post.description}"></a>
+    <a th:href="|/posts/${post.id}/edit|">edit</a>
+</div>
+
+</body>
+</html>

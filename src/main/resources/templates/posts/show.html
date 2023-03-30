@@ -14,7 +14,7 @@
 <ul th:each="post : ${posts}">
     <card>
         <li th:text="${post.title}">(insert post name here)</li>
-        <a th:href="|/posts/${post.id}/edit|">edit</a>
+        <a th:href="|/posts/${post.id}/info|">more</a>
     </card>
 </ul>
 </body>
